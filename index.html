@@ -4,333 +4,400 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>学中文 - Học Từ Vựng HSK 1-4</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@300;400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --primary:#c0392b;--primary-light:#e74c3c;--primary-dark:#922b21;
-  --gold:#d4a017;--gold-light:#f0c040;
-  --bg:#f5f0eb;--card:#fff;--text:#2c3e50;--text-light:#7f8c8d;
-  --green:#27ae60;--green-light:#2ecc71;
-  --red:#e74c3c;--red-light:#ff6b6b;
-  --blue:#2980b9;--purple:#8e44ad;
-  --shadow:0 2px 15px rgba(0,0,0,0.08);
-  --radius:12px;
+  --pri:#5b9bd5;--pri-light:#93c5e8;--pri-bg:#eef5fb;
+  --green:#6dc5a1;--green-bg:#edf8f3;--green-dark:#4da882;
+  --orange:#e8956a;--orange-bg:#fdf0e8;--orange-dark:#b85c2e;
+  --bg:#f0f4f2;--card:#fff;--text:#3a4a5c;--text-sec:#8899a6;
+  --border:#dce4e8;--border-light:#f0f4f2;
+  --red:#e87c7c;--red-bg:#fdf0f0;
+  --radius:14px;--shadow:0 2px 12px rgba(60,80,100,0.07);
 }
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-.container{max-width:800px;margin:0 auto;padding:16px}
-header{text-align:center;padding:24px 0 16px;position:relative}
-header h1{font-size:1.8em;color:var(--primary);margin-bottom:4px}
-header h1 span{color:var(--gold)}
-header p{color:var(--text-light);font-size:0.9em}
-.stats-bar{display:flex;gap:12px;justify-content:center;margin:16px 0;flex-wrap:wrap}
-.stat-item{background:var(--card);padding:10px 18px;border-radius:var(--radius);box-shadow:var(--shadow);text-align:center;min-width:100px}
-.stat-item .num{font-size:1.4em;font-weight:700;color:var(--primary)}
-.stat-item .label{font-size:0.75em;color:var(--text-light);margin-top:2px}
-.nav-tabs{display:flex;gap:8px;margin:16px 0;overflow-x:auto;padding-bottom:4px}
-.nav-tab{padding:10px 20px;border:none;border-radius:var(--radius);cursor:pointer;font-size:0.9em;font-weight:600;background:var(--card);color:var(--text-light);box-shadow:var(--shadow);transition:all .2s;white-space:nowrap}
-.nav-tab:hover{transform:translateY(-1px);color:var(--text)}
-.nav-tab.active{background:var(--primary);color:#fff}
-.filters{display:flex;gap:8px;margin:12px 0;flex-wrap:wrap;align-items:center}
-.filter-group{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
-.filter-group label{font-size:0.8em;color:var(--text-light);font-weight:600;margin-right:4px}
-.filter-btn{padding:6px 12px;border:2px solid #ddd;border-radius:20px;cursor:pointer;font-size:0.8em;background:#fff;color:var(--text);transition:all .2s}
-.filter-btn:hover{border-color:var(--primary-light)}
-.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-.filter-btn.hsk1.active{background:#e67e22;border-color:#e67e22}
-.filter-btn.hsk2.active{background:#27ae60;border-color:#27ae60}
-.filter-btn.hsk3.active{background:#2980b9;border-color:#2980b9}
-.filter-btn.hsk4.active{background:#8e44ad;border-color:#8e44ad}
-.search-box{width:100%;padding:10px 16px;border:2px solid #e0d5cc;border-radius:var(--radius);font-size:0.95em;background:var(--card);margin:8px 0;outline:none;transition:border-color .2s}
-.search-box:focus{border-color:var(--primary-light)}
-.card-container{perspective:1000px;margin:20px 0}
-.flashcard{position:relative;width:100%;min-height:320px;cursor:pointer;transform-style:preserve-3d;transition:transform 0.5s}
+body{font-family:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:15px}
+.container{max-width:1100px;margin:0 auto;padding:12px 16px}
+.app-layout{display:flex;gap:20px;align-items:flex-start}
+
+/* ── Sidebar ── */
+.sidebar{width:200px;flex-shrink:0;position:sticky;top:16px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 14px;display:flex;flex-direction:column;gap:16px}
+.sidebar-brand{font-size:1.5em;font-weight:300;color:var(--green-dark);font-family:'LXGW WenKai TC',sans-serif;text-align:center;padding-bottom:4px;border-bottom:1px solid var(--border-light)}
+.sidebar-stats{display:flex;gap:6px}
+.stat-item{flex:1;padding:10px 6px;border-radius:12px;text-align:center}
+.stat-item:nth-child(1){background:var(--pri-bg)}
+.stat-item:nth-child(2){background:var(--green-bg)}
+.stat-item:nth-child(3){background:var(--orange-bg)}
+.stat-item .num{font-size:1.1em;font-weight:700;display:block}
+.stat-item:nth-child(1) .num{color:var(--pri)}
+.stat-item:nth-child(2) .num{color:var(--green-dark)}
+.stat-item:nth-child(3) .num{color:var(--orange-dark)}
+.stat-item .label{font-size:.6em;color:var(--text-sec);text-transform:uppercase;letter-spacing:.03em;margin-top:2px;display:block}
+.sidebar-section{}
+.sidebar-label{font-size:.65em;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;padding:0 4px}
+.sidebar-nav{display:flex;flex-direction:column;gap:2px}
+.nav-tab{display:block;width:100%;text-align:left;padding:9px 14px;border:none;cursor:pointer;font-size:.85em;font-weight:600;background:none;color:var(--text-sec);transition:all .15s;border-radius:10px;white-space:nowrap}
+.nav-tab:hover{background:var(--border-light);color:var(--text)}
+.nav-tab.active{background:var(--green);color:#fff;box-shadow:0 2px 8px rgba(109,197,161,0.3)}
+.hsk-filters{display:flex;flex-wrap:wrap;gap:4px}
+.filter-btn{padding:6px 0;border:none;border-radius:8px;cursor:pointer;font-size:.8em;font-weight:600;background:var(--border-light);color:var(--text-sec);transition:all .15s;flex:1;text-align:center;min-width:0}
+.filter-btn:hover{background:var(--pri-bg);color:var(--pri)}
+.filter-btn.active{background:var(--pri);color:#fff;box-shadow:0 2px 8px rgba(91,155,213,0.25)}
+.filter-btn.hsk1.active,.filter-btn.hsk2.active,.filter-btn.hsk3.active,.filter-btn.hsk4.active{background:var(--pri);color:#fff}
+
+/* ── Main ── */
+.main-content{flex:1;min-width:0}
+.sub-nav{display:flex;gap:6px;margin:0 0 14px;flex-wrap:wrap}
+.sub-nav button{padding:7px 18px;border:none;border-radius:999px;cursor:pointer;font-size:.82em;font-weight:600;background:var(--card);color:var(--text-sec);transition:all .15s;white-space:nowrap;box-shadow:var(--shadow)}
+.sub-nav button:hover{color:var(--pri);background:var(--pri-bg)}
+.sub-nav button.active{background:var(--pri);color:#fff;box-shadow:0 2px 10px rgba(91,155,213,0.3)}
+.filter-group{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+.fc-filter-btn{padding:6px 14px;border:none;border-radius:999px;cursor:pointer;font-size:.78em;font-weight:500;background:var(--card);color:var(--text-sec);transition:all .15s;box-shadow:var(--shadow)}
+.fc-filter-btn:hover{color:var(--orange-dark);background:var(--orange-bg)}
+.fc-filter-btn.active{background:var(--orange);color:#fff;box-shadow:0 2px 8px rgba(232,149,106,0.35)}
+.search-box{width:100%;padding:10px 16px;border:none;border-radius:var(--radius);font-size:.9em;background:var(--card);margin:0 0 10px;outline:none;box-shadow:var(--shadow);transition:box-shadow .15s}
+.search-box:focus{box-shadow:0 0 0 3px rgba(91,155,213,0.15)}
+
+/* ── Flashcard ── */
+.card-container{perspective:1000px;margin:10px 0}
+.flashcard{position:relative;width:100%;min-height:300px;cursor:pointer;transform-style:preserve-3d;transition:transform 0.5s}
 .flashcard.flipped{transform:rotateY(180deg)}
-.card-face{position:absolute;width:100%;min-height:320px;backface-visibility:hidden;border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px}
-.card-front{background:linear-gradient(135deg,#fff 0%,#fdf6f0 100%)}
-.card-back{background:linear-gradient(135deg,#fdf6f0 0%,#f0e6d8 100%);transform:rotateY(180deg)}
-.card-hanzi{font-size:4em;font-weight:700;color:var(--primary-dark);margin-bottom:8px;line-height:1.2}
-.card-pinyin{font-size:1.5em;color:var(--gold);margin-bottom:4px}
-.card-vi{font-size:1.3em;color:var(--text);margin-bottom:16px;text-align:center}
-.card-example{background:rgba(192,57,43,0.06);padding:14px 18px;border-radius:8px;width:100%;margin-top:8px}
-.card-example .ex-zh{font-size:1.2em;color:var(--text);margin-bottom:4px}
-.card-example .ex-py{font-size:0.9em;color:var(--gold);margin-bottom:4px}
-.card-example .ex-vi{font-size:0.9em;color:var(--text-light);font-style:italic}
-.example-title{font-size:0.8em;color:var(--text-light);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin:8px 0 4px}
-.example-toggle{margin-top:10px}
-.example-toggle button{padding:7px 12px;border:none;border-radius:10px;background:var(--blue);color:#fff;cursor:pointer;font-size:0.83em}
-.example-hidden{display:none;margin-top:8px}
+.card-face{position:absolute;width:100%;min-height:300px;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;background:var(--card);box-shadow:var(--shadow)}
+.card-front{background:var(--card)}
+.card-back{background:var(--card);transform:rotateY(180deg)}
+.card-hanzi{font-size:3.8em;font-weight:300;color:var(--text);margin-bottom:8px;line-height:1.2;font-family:'LXGW WenKai TC',sans-serif}
+.card-pinyin{font-size:1.05em;color:var(--pri);margin-bottom:3px;font-weight:500}
+.card-vi{font-size:.92em;color:var(--text-sec);margin-bottom:14px;text-align:center}
+.card-example{background:var(--border-light);padding:14px 18px;border-radius:10px;width:100%;margin-top:8px}
+.card-example .ex-zh,.grammar-ex .ex-zh,.wd-example .ex-zh{font-size:1.05em;color:var(--text);margin-bottom:4px;font-family:'LXGW WenKai TC',sans-serif;font-weight:400;line-height:1.7}
+.card-example .ex-py,.grammar-ex .ex-py,.wd-example .ex-py{font-size:.78em;color:var(--pri);margin-bottom:2px;line-height:1.5}
+.card-example .ex-vi,.grammar-ex .ex-vi,.wd-example .ex-vi{font-size:.78em;color:var(--text-sec);font-style:italic;line-height:1.5}
+.example-title{font-size:.7em;color:var(--text-sec);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin:6px 0 3px}
+.example-toggle{margin-top:8px}
+.example-toggle button{padding:5px 12px;border:none;border-radius:999px;background:var(--pri-bg);color:var(--pri);cursor:pointer;font-size:.78em;font-weight:600;transition:all .15s}
+.example-toggle button:hover{background:var(--pri);color:#fff}
+.example-hidden{display:none;margin-top:6px}
 .example-hidden.show{display:block}
-.card-hint{font-size:0.85em;color:var(--text-light);margin-top:12px}
-.card-badge{position:absolute;top:12px;left:12px;padding:4px 10px;border-radius:20px;font-size:0.75em;font-weight:600;color:#fff}
-.card-badge.hsk1{background:#e67e22}
-.card-badge.hsk2{background:#27ae60}
-.card-badge.hsk3{background:#2980b9}
-.card-badge.hsk4{background:#8e44ad}
-.card-lesson{position:absolute;top:12px;right:12px;font-size:0.75em;color:var(--text-light)}
-.card-nav{display:flex;gap:12px;justify-content:center;margin:16px 0;align-items:center}
-.card-nav button{padding:10px 24px;border:none;border-radius:var(--radius);cursor:pointer;font-size:0.95em;font-weight:600;transition:all .2s}
+.card-hint{font-size:.82em;color:var(--text-sec);margin-top:12px}
+.card-badge{position:absolute;top:14px;left:14px;padding:4px 12px;border-radius:999px;font-size:.72em;font-weight:600;background:var(--pri);color:#fff}
+.card-badge.hsk1,.card-badge.hsk2,.card-badge.hsk3,.card-badge.hsk4{background:var(--pri)}
+.card-lesson{position:absolute;top:14px;right:14px;font-size:.72em;color:var(--text-sec)}
+.card-nav{display:flex;gap:8px;justify-content:center;margin:12px 0;align-items:center}
+.card-nav button{padding:10px 22px;border:none;border-radius:var(--radius);cursor:pointer;font-size:.88em;font-weight:600;transition:all .15s}
 .btn-prev,.btn-next{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
-.btn-prev:hover,.btn-next:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,0.12)}
-.btn-know{background:var(--green);color:#fff}
-.btn-know:hover{background:var(--green-light)}
-.btn-dontknow{background:var(--red);color:#fff}
-.btn-dontknow:hover{background:var(--red-light)}
-.progress-text{font-size:0.9em;color:var(--text-light);min-width:60px;text-align:center}
-.quiz-container{margin:20px 0}
-.quiz-question{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px 24px;text-align:center;margin-bottom:16px}
-.quiz-hanzi{font-size:3.5em;font-weight:700;color:var(--primary-dark);margin-bottom:8px}
-.quiz-prompt{font-size:0.95em;color:var(--text-light);margin-bottom:4px}
-.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0}
-.quiz-option{padding:14px 16px;border:2px solid #e0d5cc;border-radius:var(--radius);cursor:pointer;font-size:0.95em;background:var(--card);transition:all .2s;text-align:center}
-.quiz-option:hover{border-color:var(--primary-light);transform:translateY(-1px)}
-.quiz-option.correct{background:#d5f5e3;border-color:var(--green);color:var(--green)}
-.quiz-option.wrong{background:#fadbd8;border-color:var(--red);color:var(--red)}
+.btn-prev:hover,.btn-next:hover{background:var(--pri-bg);color:var(--pri)}
+.btn-know{background:var(--green);color:#fff;box-shadow:0 2px 8px rgba(109,197,161,0.3)}
+.btn-know:hover{opacity:.9}
+.btn-dontknow{background:var(--red);color:#fff;box-shadow:0 2px 8px rgba(232,124,124,0.3)}
+.btn-dontknow:hover{opacity:.9}
+.progress-text{font-size:.85em;color:var(--text-sec);min-width:50px;text-align:center}
+.fc-toolbar{display:flex;gap:6px;margin:0 0 8px;flex-wrap:wrap;align-items:center}
+
+/* ── Quiz ── */
+.quiz-container{margin:10px 0}
+.quiz-question{background:var(--card);border-radius:var(--radius);padding:32px 24px;text-align:center;margin-bottom:10px;box-shadow:var(--shadow)}
+.quiz-hanzi{font-size:3.2em;font-weight:300;color:var(--text);margin-bottom:6px;font-family:'LXGW WenKai TC',sans-serif}
+.quiz-prompt{font-size:.88em;color:var(--text-sec);margin-bottom:4px}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.quiz-option{padding:14px 16px;border:none;border-radius:var(--radius);cursor:pointer;font-size:.9em;background:var(--card);transition:all .15s;text-align:center;box-shadow:var(--shadow)}
+.quiz-option:hover{background:var(--pri-bg);color:var(--pri)}
+.quiz-option.correct{background:var(--green-bg);color:var(--green-dark);box-shadow:0 0 0 2px var(--green)}
+.quiz-option.wrong{background:var(--red-bg);color:#c55;box-shadow:0 0 0 2px var(--red)}
 .quiz-option.disabled{pointer-events:none}
-.quiz-result{text-align:center;padding:12px;border-radius:8px;margin:8px 0;font-weight:600}
-.quiz-result.correct-result{background:#d5f5e3;color:var(--green)}
-.quiz-result.wrong-result{background:#fadbd8;color:var(--red)}
-.quiz-score{display:flex;gap:16px;justify-content:center;margin:12px 0}
-.quiz-score .score-correct{color:var(--green);font-weight:700}
+.quiz-result{text-align:center;padding:10px;border-radius:10px;margin:6px 0;font-weight:600}
+.quiz-result.correct-result{background:var(--green-bg);color:var(--green-dark)}
+.quiz-result.wrong-result{background:var(--red-bg);color:#c55}
+.quiz-score{display:flex;gap:16px;justify-content:center;margin:8px 0;font-size:.88em}
+.quiz-score .score-correct{color:var(--green-dark);font-weight:700}
 .quiz-score .score-wrong{color:var(--red);font-weight:700}
-.word-list{display:grid;gap:8px;margin:16px 0}
-.word-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--card);border-radius:var(--radius);box-shadow:0 1px 8px rgba(0,0,0,0.05);cursor:pointer;transition:all .2s}
-.word-item:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
-.word-item .wi-hanzi{font-size:1.4em;font-weight:700;color:var(--primary-dark);min-width:80px}
-.word-item .wi-pinyin{color:var(--gold);font-size:0.9em;min-width:100px}
-.word-item .wi-vi{color:var(--text);font-size:0.9em;flex:1}
-.word-item .wi-badge{padding:2px 8px;border-radius:10px;font-size:0.7em;color:#fff;font-weight:600}
-.word-item .wi-star{font-size:1.2em;cursor:pointer;opacity:0.3;transition:opacity .2s}
-.word-item .wi-star.starred{opacity:1;color:var(--gold)}
-.word-detail-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:none;z-index:100;align-items:center;justify-content:center;padding:16px}
+
+/* ── Word list ── */
+.word-list{display:grid;gap:0;margin:8px 0;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.word-item{display:flex;align-items:center;gap:10px;padding:11px 16px;background:var(--card);cursor:pointer;transition:background .1s;border-bottom:1px solid var(--border-light)}
+.word-item:last-child{border-bottom:none}
+.word-item:hover{background:var(--green-bg)}
+.word-item .wi-hanzi{font-size:1.2em;font-weight:400;color:var(--text);min-width:70px;font-family:'LXGW WenKai TC',sans-serif}
+.word-item .wi-pinyin{color:var(--pri);font-size:.85em;min-width:90px}
+.word-item .wi-vi{color:var(--text);font-size:.85em;flex:1}
+.word-item .wi-badge{padding:3px 8px;border-radius:999px;font-size:.65em;background:var(--orange-bg);color:var(--orange-dark);font-weight:600;white-space:nowrap}
+.word-item .wi-star{font-size:1.1em;cursor:pointer;opacity:0.3;transition:opacity .2s}
+.word-item .wi-star.starred{opacity:1;color:var(--orange-dark)}
+
+/* ── Detail popup ── */
+.word-detail-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(58,74,92,0.25);display:none;z-index:100;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
 .word-detail-overlay.show{display:flex}
-.word-detail{background:var(--card);border-radius:var(--radius);padding:32px 24px;max-width:500px;width:100%;max-height:80vh;overflow-y:auto;position:relative}
-.word-detail .close-btn{position:absolute;top:12px;right:16px;font-size:1.5em;cursor:pointer;color:var(--text-light);border:none;background:none}
-.word-detail .wd-hanzi{font-size:3em;font-weight:700;color:var(--primary-dark);text-align:center}
-.word-detail .wd-pinyin{font-size:1.3em;color:var(--gold);text-align:center;margin:4px 0}
-.word-detail .wd-vi{font-size:1.1em;text-align:center;margin-bottom:16px}
-.word-detail .wd-example{background:rgba(192,57,43,0.06);padding:14px 18px;border-radius:8px;margin-top:12px}
-.pinyin-input{width:100%;padding:14px;border:2px solid #e0d5cc;border-radius:var(--radius);font-size:1.1em;text-align:center;outline:none;margin:12px 0}
-.pinyin-input:focus{border-color:var(--primary-light)}
-.btn-check{padding:12px 32px;border:none;border-radius:var(--radius);background:var(--primary);color:#fff;font-size:1em;font-weight:600;cursor:pointer;transition:all .2s}
-.btn-check:hover{background:var(--primary-light)}
-.btn-reset{padding:8px 20px;border:2px solid var(--primary);border-radius:var(--radius);background:transparent;color:var(--primary);font-size:0.85em;cursor:pointer;transition:all .2s}
-.btn-reset:hover{background:var(--primary);color:#fff}
+.word-detail{background:var(--card);border-radius:18px;padding:32px 24px;max-width:480px;width:100%;max-height:85vh;overflow-y:auto;position:relative;box-shadow:0 8px 40px rgba(60,80,100,0.15)}
+.word-detail .close-btn{position:absolute;top:12px;right:16px;font-size:1.4em;cursor:pointer;color:var(--text-sec);border:none;background:none}
+.word-detail .wd-hanzi{font-size:2.8em;font-weight:300;color:var(--text);text-align:center;font-family:'LXGW WenKai TC',sans-serif}
+.word-detail .wd-pinyin{font-size:.95em;color:var(--pri);text-align:center;margin:3px 0}
+.word-detail .wd-vi{font-size:.88em;color:var(--text-sec);text-align:center;margin-bottom:14px}
+.word-detail .wd-example{background:var(--border-light);padding:14px 18px;border-radius:12px;margin-top:10px}
+
+/* ── Inputs & buttons ── */
+.pinyin-input{width:100%;padding:12px;border:none;border-radius:var(--radius);font-size:1.05em;text-align:center;outline:none;margin:10px 0;background:var(--card);box-shadow:var(--shadow)}
+.pinyin-input:focus{box-shadow:0 0 0 3px rgba(91,155,213,0.15)}
+.btn-check{padding:10px 28px;border:none;border-radius:var(--radius);background:var(--green);color:#fff;font-size:.92em;font-weight:600;cursor:pointer;transition:all .15s;box-shadow:0 2px 8px rgba(109,197,161,0.3)}
+.btn-check:hover{opacity:.88}
+.btn-reset{padding:6px 14px;border:none;border-radius:999px;background:var(--card);color:var(--text-sec);font-size:.78em;cursor:pointer;transition:all .15s;box-shadow:var(--shadow)}
+.btn-reset:hover{color:var(--pri);background:var(--pri-bg)}
 .section{display:none}
 .section.active{display:block}
-.empty-state{text-align:center;padding:48px 24px;color:var(--text-light)}
-.empty-state .emoji{font-size:3em;margin-bottom:12px}
-.shuffle-btn{padding:8px 16px;border:2px solid var(--gold);border-radius:var(--radius);background:transparent;color:var(--gold);font-size:0.85em;cursor:pointer;font-weight:600;transition:all .2s}
-.shuffle-btn:hover{background:var(--gold);color:#fff}
-.mode-toggle{display:flex;gap:4px;background:var(--card);border-radius:var(--radius);padding:4px;box-shadow:var(--shadow);margin:8px 0}
-.mode-toggle button{flex:1;padding:8px 12px;border:none;border-radius:8px;cursor:pointer;font-size:0.8em;font-weight:600;background:transparent;color:var(--text-light);transition:all .2s}
-.mode-toggle button.active{background:var(--primary);color:#fff}
-.panel-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 20px;margin:14px 0}
-.panel-title{font-size:1.1em;font-weight:700;color:var(--primary-dark);margin-bottom:8px}
-.panel-sub{font-size:0.85em;color:var(--text-light);margin-bottom:10px}
-.grammar-list{display:grid;gap:12px;margin-top:12px}
-.reading-list{display:flex;flex-direction:column;gap:20px;margin-top:12px}
-.grammar-item{background:var(--card);border-radius:var(--radius);box-shadow:0 1px 8px rgba(0,0,0,0.05);padding:16px 18px;border-left:4px solid var(--primary-light)}
-.reading-lesson{background:var(--card);border-radius:var(--radius);box-shadow:0 2px 12px rgba(0,0,0,0.07);overflow:hidden;border:1px solid rgba(0,0,0,0.06)}
-.reading-lesson-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(135deg,rgba(192,57,43,0.08) 0%,rgba(212,160,23,0.12) 100%);border-bottom:2px solid var(--gold)}
-.reading-lesson-title{font-size:1.2em;font-weight:700;color:var(--primary-dark);line-height:1.4}
-.reading-lesson-body{padding:14px 16px 18px;display:flex;flex-direction:column;gap:14px}
-.reading-text-block{background:#fff;border:1px solid rgba(0,0,0,0.07);border-radius:10px;overflow:hidden}
-.reading-text-block.passage{border-left:4px solid #2980b9}
-.reading-text-block.dialogue{border-left:4px solid var(--gold)}
-.reading-text-head{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(0,0,0,0.025);border-bottom:1px solid rgba(0,0,0,0.05)}
-.reading-text-num{font-size:0.88em;font-weight:700;color:#fff;background:var(--gold);padding:3px 12px;border-radius:6px;white-space:nowrap}
-.reading-text-block.passage .reading-text-num{background:#2980b9}
-.reading-text-name{font-size:0.9em;color:var(--text-light);font-weight:500;line-height:1.4}
-.reading-text-body{padding:12px 14px 14px;background:rgba(212,160,23,0.04)}
-.reading-text-block.passage .reading-text-body{background:rgba(41,128,185,0.04)}
-.grammar-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap;margin-bottom:8px}
-.grammar-pattern{font-size:1.15em;font-weight:700;color:var(--primary-dark)}
-.grammar-meta{font-size:0.8em;color:var(--text-light)}
-.grammar-ex{background:rgba(192,57,43,0.06);padding:12px 14px;border-radius:8px;margin-top:10px}
-.vocab-hl{background:linear-gradient(120deg,rgba(192,57,43,0.13) 0%,rgba(212,160,23,0.18) 100%);color:var(--primary);font-weight:600;padding:1px 3px;border-radius:3px;border-bottom:2px solid var(--primary-light)}
-.vocab-highlight-demo{background:linear-gradient(120deg,rgba(192,57,43,0.13) 0%,rgba(212,160,23,0.18) 100%);color:var(--primary);font-weight:600;padding:1px 4px;border-radius:3px;border-bottom:2px solid var(--primary-light)}
-.dialogue-line{margin:5px 0;line-height:1.75;font-size:1.02em}
-.dialogue-line .speaker{font-weight:700;color:var(--primary-dark);margin-right:2px}
-.passage-line{margin:8px 0;line-height:1.8;font-size:1.02em;text-indent:2em}
+.sub-section{display:none}
+.sub-section.active{display:block}
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-sec)}
+.empty-state .emoji{font-size:2.5em;margin-bottom:8px}
+.shuffle-btn{padding:6px 14px;border:none;border-radius:999px;background:var(--card);color:var(--text-sec);font-size:.78em;cursor:pointer;font-weight:600;transition:all .15s;box-shadow:var(--shadow)}
+.shuffle-btn:hover{color:var(--pri);background:var(--pri-bg)}
+.panel-card{margin:8px 0}
+.panel-title{font-size:1em;font-weight:700;color:var(--text);margin-bottom:4px}
+.panel-sub{font-size:.8em;color:var(--text-sec);margin-bottom:8px}
+
+/* ── Shared orange header (reading + grammar) ── */
+.content-head{display:flex;align-items:stretch}
+.content-meta{flex-shrink:0;display:flex;align-items:center;font-size:.72em;color:#fff;background:var(--orange);padding:8px 12px;font-weight:600;white-space:nowrap}
+.content-title-wrap{flex:1;display:flex;align-items:center;padding:8px 14px;background:var(--orange-bg)}
+.content-title{font-size:.95em;font-weight:600;color:var(--orange-dark);line-height:1.4;font-family:'LXGW WenKai TC',sans-serif}
+
+/* ── Grammar ── */
+.grammar-list{display:grid;gap:10px;margin-top:8px}
+.grammar-item{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.grammar-body{padding:14px 20px 18px}
+.grammar-ex{background:var(--border-light);padding:14px 18px;border-radius:10px;margin-top:10px}
+.grammar-note{font-size:.88em;line-height:1.55;color:var(--text-sec);margin-bottom:0}
+
+/* ── Reading ── */
+.reading-list{display:flex;flex-direction:column;gap:20px;margin-top:8px}
+.reading-lesson{margin-bottom:4px}
+.reading-lesson-body{display:flex;flex-direction:column;gap:10px}
+.reading-text-block{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.reading-text-block.passage{box-shadow:0 2px 12px rgba(210,170,60,0.12)}
+.reading-text-body{padding:16px 20px}
+.reading-text-block.passage .reading-text-body{background:var(--orange-bg)}
+.vocab-hl{font-weight:600;padding:0 2px;border-radius:3px;border-bottom:1.5px dotted currentColor;cursor:pointer;position:relative;font-family:'LXGW WenKai TC',sans-serif}
+.speaker-a .vocab-hl{background:var(--pri-bg);color:var(--pri)}
+.speaker-b .vocab-hl{background:var(--green-bg);color:var(--green-dark)}
+.passage-line .vocab-hl,.reading-text-block.passage .vocab-hl{background:var(--orange-bg);color:var(--orange-dark)}
+.dialogue-line{margin:2px 0;padding:7px 14px;line-height:1.7;font-size:.95em;border-radius:8px;font-family:'LXGW WenKai TC',sans-serif;font-weight:400}
+.dialogue-line.speaker-a{background:var(--pri-bg)}
+.dialogue-line.speaker-b{background:var(--green-bg)}
+.dialogue-line .speaker{font-weight:600;color:var(--text);margin-right:2px}
+.dialogue-line:not(.speaker-a):not(.speaker-b) .vocab-hl{background:var(--card);color:var(--pri)}
+.passage-line{margin:0;padding:4px 0;line-height:1.85;font-size:.95em;text-indent:2em;font-family:'LXGW WenKai TC',sans-serif;font-weight:400}
 .passage-line:first-child{margin-top:0}
-.lesson-chapter{font-size:0.78em;color:var(--text-light);background:rgba(255,255,255,0.7);padding:4px 10px;border-radius:999px;border:1px solid rgba(0,0,0,0.08)}
-.difficulty-badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:0.75em;font-weight:700;color:#fff}
-.difficulty-easy{background:#27ae60}
-.difficulty-medium{background:#e67e22}
-.difficulty-hard{background:#8e44ad}
-.grammar-note{font-size:0.92em;line-height:1.55}
-.small-btn{padding:7px 12px;border:none;border-radius:10px;background:var(--blue);color:#fff;cursor:pointer;font-size:0.85em}
-.small-btn:hover{opacity:.92}
-@media(max-width:600px){
+
+/* ── Tooltips ── */
+.vocab-tip{position:fixed;z-index:200;border-radius:10px;padding:7px 11px;pointer-events:none;box-shadow:0 4px 16px rgba(60,80,100,0.1);max-width:200px;display:none;font-size:12px;line-height:1.35;border-left:3px solid transparent}
+.vocab-tip .vt-py{font-size:.92em;font-weight:600;margin-bottom:1px}
+.vocab-tip .vt-vi{font-size:.8em;color:var(--text-sec)}
+.vocab-tip.tip-a{background:var(--pri-bg);border-left-color:var(--pri)}
+.vocab-tip.tip-a .vt-py{color:var(--pri)}
+.vocab-tip.tip-b{background:var(--green-bg);border-left-color:var(--green-dark)}
+.vocab-tip.tip-b .vt-py{color:var(--green-dark)}
+.vocab-tip.tip-passage{background:var(--orange-bg);border-left-color:var(--orange-dark)}
+.vocab-tip.tip-passage .vt-py{color:var(--orange-dark)}
+.vocab-tip.tip-default{background:var(--card);border-left-color:var(--pri)}
+.vocab-tip.tip-default .vt-py{color:var(--pri)}
+
+.small-btn{padding:5px 12px;border:none;border-radius:999px;background:var(--card);color:var(--text-sec);cursor:pointer;font-size:.78em;box-shadow:var(--shadow)}
+.small-btn:hover{background:var(--pri-bg);color:var(--pri)}
+
+/* ── Responsive ── */
+@media(max-width:700px){
+  .app-layout{flex-direction:column;gap:0}
+  .sidebar{width:100%;position:static;border-radius:0;box-shadow:none;padding:12px;gap:10px;border-bottom:1px solid var(--border)}
+  .sidebar-brand{font-size:1.2em;text-align:left;border-bottom:none;padding-bottom:0}
+  .sidebar-stats{gap:4px}
+  .stat-item{padding:6px 4px}
+  .sidebar-label{display:none}
+  .sidebar-nav{flex-direction:row;gap:3px;overflow-x:auto}
+  .nav-tab{padding:7px 12px;font-size:.78em;text-align:center;white-space:nowrap}
+  .hsk-filters{gap:3px}
+  .filter-btn{padding:5px 0;font-size:.75em;min-width:0}
   .card-hanzi,.quiz-hanzi{font-size:2.8em}
   .quiz-options{grid-template-columns:1fr}
   .card-nav{flex-wrap:wrap}
-  .filters{flex-direction:column;align-items:stretch}
   .filter-group{flex-wrap:wrap}
-  .stats-bar{gap:8px}
-  .stat-item{min-width:80px;padding:8px 12px}
 }
-.mastery-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-left:4px}
-.mastery-0{background:#e0d5cc}
-.mastery-1{background:var(--gold)}
-.mastery-2{background:var(--green-light)}
-.mastery-3{background:var(--green)}
-.fade-in{animation:fadeIn .3s ease-in}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.correct-flash{animation:correctFlash .5s}
-@keyframes correctFlash{0%,100%{background:var(--card)}50%{background:#d5f5e3}}
-.wrong-flash{animation:wrongFlash .5s}
-@keyframes wrongFlash{0%,100%{background:var(--card)}50%{background:#fadbd8}}
+
+/* ── Animations ── */
+.mastery-dot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-left:4px}
+.mastery-0{background:var(--border)}
+.mastery-1{background:var(--orange)}
+.mastery-2{background:var(--green)}
+.mastery-3{background:var(--green-dark)}
+.fade-in{animation:fadeIn .2s ease-in}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.correct-flash{animation:correctFlash .4s}
+@keyframes correctFlash{0%,100%{background:var(--card)}50%{background:var(--green-bg)}}
+.wrong-flash{animation:wrongFlash .4s}
+@keyframes wrongFlash{0%,100%{background:var(--card)}50%{background:var(--red-bg)}}
 </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <h1>学<span>中</span>文</h1>
-    <p>Học Từ Vựng HSK 1-4 | HSK4 đến Bài 11</p>
-  </header>
+  <div class="app-layout">
 
-  <div class="stats-bar">
-    <div class="stat-item"><div class="num" id="totalWords">0</div><div class="label">Tổng từ</div></div>
-    <div class="stat-item"><div class="num" id="learnedWords">0</div><div class="label">Đã thuộc</div></div>
-    <div class="stat-item"><div class="num" id="learningWords">0</div><div class="label">Đang học</div></div>
-    <div class="stat-item"><div class="num" id="accuracy">0%</div><div class="label">Chính xác</div></div>
-  </div>
+  <aside class="sidebar">
+    <div class="sidebar-brand">学中文</div>
 
-  <div class="nav-tabs">
-    <button class="nav-tab active" onclick="switchSection('flashcard')">🀄 Flashcard</button>
-    <button class="nav-tab" onclick="switchSection('quiz')">📝 Trắc nghiệm</button>
-    <button class="nav-tab" onclick="switchSection('pinyin')">🔤 Luyện Pinyin</button>
-    <button class="nav-tab" onclick="switchSection('list')">📖 Danh sách</button>
-    <button class="nav-tab" onclick="switchSection('grammar')">📚 Ngữ pháp</button>
-    <button class="nav-tab" onclick="switchSection('reading')">📄 Hội thoại</button>
-  </div>
-
-  <div class="filters">
-    <div class="filter-group">
-      <label>HSK:</label>
-      <button class="filter-btn hsk1 active" onclick="toggleHSK(1,this)">HSK 1</button>
-      <button class="filter-btn hsk2 active" onclick="toggleHSK(2,this)">HSK 2</button>
-      <button class="filter-btn hsk3 active" onclick="toggleHSK(3,this)">HSK 3</button>
-      <button class="filter-btn hsk4 active" onclick="toggleHSK(4,this)">HSK 4</button>
+    <div class="sidebar-stats">
+      <div class="stat-item"><span class="num" id="totalWords">0</span><span class="label">Tổng</span></div>
+      <div class="stat-item"><span class="num" id="learningWords">0</span><span class="label">Học</span></div>
+      <div class="stat-item"><span class="num" id="accuracy">0%</span><span class="label">Đúng</span></div>
     </div>
-    <div class="filter-group">
-      <label>Trạng thái:</label>
-      <button class="filter-btn active" data-status="all" onclick="setStatusFilter('all',this)">Tất cả</button>
-      <button class="filter-btn" data-status="new" onclick="setStatusFilter('new',this)">Chưa học</button>
-      <button class="filter-btn" data-status="learning" onclick="setStatusFilter('learning',this)">Đang học</button>
-      <button class="filter-btn" data-status="mastered" onclick="setStatusFilter('mastered',this)">Đã thuộc</button>
-    </div>
-    <button type="button" class="shuffle-btn" onclick="shuffleWords()">🔀 Trộn</button>
-    <button type="button" class="btn-reset" onclick="resetProgress()">↺ Reset</button>
-  </div>
 
-  <!-- FLASHCARD -->
-  <div class="section active" id="sec-flashcard">
-    <div class="card-container" onclick="flipCard()">
-      <div class="flashcard" id="flashcard">
-        <div class="card-face card-front">
-          <span class="card-badge" id="fc-badge"></span>
-          <span class="card-lesson" id="fc-lesson"></span>
-          <div class="card-hanzi" id="fc-hanzi"></div>
-          <div class="card-hint">Nhấn để xem đáp án</div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Mục</div>
+      <div class="sidebar-nav">
+        <button class="nav-tab active" onclick="switchSection('vocab',this)">Từ vựng</button>
+        <button class="nav-tab" onclick="switchSection('test',this)">Kiểm tra</button>
+        <button class="nav-tab" onclick="switchSection('reading',this)">Bài đọc</button>
+        <button class="nav-tab" onclick="switchSection('grammar',this)">Ngữ pháp</button>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Cấp độ</div>
+      <div class="hsk-filters">
+        <button class="filter-btn hsk1 active" onclick="toggleHSK(1,this)">1</button>
+        <button class="filter-btn hsk2 active" onclick="toggleHSK(2,this)">2</button>
+        <button class="filter-btn hsk3 active" onclick="toggleHSK(3,this)">3</button>
+        <button class="filter-btn hsk4 active" onclick="toggleHSK(4,this)">4</button>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+  <!-- ===== HỌC TỪ VỰNG ===== -->
+  <div class="section active" id="sec-vocab">
+    <div class="sub-nav" id="vocab-nav">
+      <button class="active" onclick="switchSub('vocab','flashcard',this)">Flashcard</button>
+      <button onclick="switchSub('vocab','list',this)">Danh sách từ</button>
+    </div>
+
+    <div class="sub-section active" id="sub-flashcard">
+      <div class="fc-toolbar">
+        <div class="filter-group">
+          <button class="fc-filter-btn active" data-status="all" onclick="setStatusFilter('all',this)">Tất cả</button>
+          <button class="fc-filter-btn" data-status="new" onclick="setStatusFilter('new',this)">Chưa học</button>
+          <button class="fc-filter-btn" data-status="learning" onclick="setStatusFilter('learning',this)">Đang học</button>
         </div>
-        <div class="card-face card-back">
-          <span class="card-badge" id="fc-badge2"></span>
-          <div class="card-hanzi" id="fc-hanzi2" style="font-size:2.5em"></div>
-          <div class="card-pinyin" id="fc-pinyin"></div>
-          <div class="card-vi" id="fc-vi"></div>
-          <div class="card-example" id="fc-example">
-            <div class="example-title">Ví dụ tiếng Trung</div>
-            <div id="fc-ex-zh"></div>
-            <div class="example-toggle"><button onclick="toggleExampleDetails('fc');event.stopPropagation();">Xem thêm pinyin + nghĩa Việt</button></div>
-            <div class="example-hidden" id="fc-example-hidden">
-              <div class="example-title">Pinyin</div>
-              <div id="fc-ex-py"></div>
-              <div class="example-title">Nghĩa tiếng Việt</div>
-              <div id="fc-ex-vi"></div>
+        <button type="button" class="shuffle-btn" onclick="shuffleWords()">Trộn</button>
+        <button type="button" class="btn-reset" onclick="resetProgress()">Reset</button>
+      </div>
+      <div class="card-container" onclick="flipCard()">
+        <div class="flashcard" id="flashcard">
+          <div class="card-face card-front">
+            <span class="card-badge" id="fc-badge"></span>
+            <span class="card-lesson" id="fc-lesson"></span>
+            <div class="card-hanzi" id="fc-hanzi"></div>
+            <div class="card-hint">Nhấn để xem đáp án</div>
+          </div>
+          <div class="card-face card-back">
+            <span class="card-badge" id="fc-badge2"></span>
+            <div class="card-hanzi" id="fc-hanzi2" style="font-size:2.5em"></div>
+            <div class="card-pinyin" id="fc-pinyin"></div>
+            <div class="card-vi" id="fc-vi"></div>
+            <div class="card-example" id="fc-example">
+              <div class="example-title">Ví dụ</div>
+              <div id="fc-ex-zh"></div>
+              <div class="example-toggle"><button onclick="toggleExampleDetails('fc');event.stopPropagation();">Xem pinyin + nghĩa</button></div>
+              <div class="example-hidden" id="fc-example-hidden">
+                <div class="example-title">Pinyin</div>
+                <div id="fc-ex-py"></div>
+                <div class="example-title">Nghĩa</div>
+                <div id="fc-ex-vi"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="card-nav">
+        <button class="btn-dontknow" onclick="markWord(0)">Chưa thuộc</button>
+        <button class="btn-prev" onclick="prevCard()">←</button>
+        <span class="progress-text" id="fc-progress">1/100</span>
+        <button class="btn-next" onclick="nextCard()">→</button>
+        <button class="btn-know" onclick="markWord(1)">Đã thuộc</button>
+      </div>
     </div>
-    <div class="card-nav">
-      <button class="btn-dontknow" onclick="markWord(0)">✗ Chưa thuộc</button>
-      <button class="btn-prev" onclick="prevCard()">◀</button>
-      <span class="progress-text" id="fc-progress">1/100</span>
-      <button class="btn-next" onclick="nextCard()">▶</button>
-      <button class="btn-know" onclick="markWord(1)">✓ Đã thuộc</button>
+
+    <div class="sub-section" id="sub-list">
+      <input type="text" class="search-box" id="searchBox" placeholder="Tìm kiếm từ vựng..." oninput="renderList()">
+      <div class="word-list" id="wordList"></div>
     </div>
   </div>
 
-  <!-- QUIZ -->
-  <div class="section" id="sec-quiz">
-    <div class="mode-toggle">
-      <button class="active" onclick="setQuizMode('zh2vi',this)">中→Việt</button>
-      <button onclick="setQuizMode('vi2zh',this)">Việt→中</button>
+  <!-- ===== KIỂM TRA ===== -->
+  <div class="section" id="sec-test">
+    <div class="sub-nav" id="test-nav">
+      <button class="active" data-test="zh2vi" onclick="setTestMode('zh2vi',this)">中 → Việt</button>
+      <button data-test="vi2zh" onclick="setTestMode('vi2zh',this)">Việt → 中</button>
+      <button data-test="pinyin" onclick="setTestMode('pinyin',this)">Viết Pinyin</button>
     </div>
-    <div class="quiz-container">
-      <div class="quiz-question">
-        <div class="quiz-prompt" id="q-prompt">Chọn nghĩa đúng:</div>
-        <div class="quiz-hanzi" id="q-hanzi"></div>
+
+    <div class="sub-section active" id="sub-quiz">
+      <div class="quiz-container" id="quiz-container">
+        <div class="quiz-question">
+          <div class="quiz-prompt" id="q-prompt">Chọn nghĩa đúng:</div>
+          <div class="quiz-hanzi" id="q-hanzi"></div>
+        </div>
+        <div class="quiz-options" id="q-options"></div>
+        <div id="q-result" style="display:none"></div>
+        <div class="quiz-score">
+          <span>Đúng: <span class="score-correct" id="q-correct">0</span></span>
+          <span>Sai: <span class="score-wrong" id="q-wrong">0</span></span>
+        </div>
+        <div style="text-align:center;margin-top:8px">
+          <button class="btn-check" id="q-next-btn" onclick="nextQuiz()" style="display:none">Tiếp →</button>
+        </div>
       </div>
-      <div class="quiz-options" id="q-options"></div>
-      <div id="q-result" style="display:none"></div>
-      <div class="quiz-score">
-        <span>Đúng: <span class="score-correct" id="q-correct">0</span></span>
-        <span>Sai: <span class="score-wrong" id="q-wrong">0</span></span>
-      </div>
-      <div style="text-align:center;margin-top:8px">
-        <button class="btn-check" id="q-next-btn" onclick="nextQuiz()" style="display:none">Câu tiếp →</button>
+    </div>
+
+    <div class="sub-section" id="sub-pinyin">
+      <div class="quiz-container" id="pinyin-container">
+        <div class="quiz-question">
+          <div class="quiz-prompt">Nhập pinyin cho từ:</div>
+          <div class="quiz-hanzi" id="py-hanzi"></div>
+          <div id="py-vi-hint" style="font-size:0.9em;color:var(--text-sec);margin-top:4px"></div>
+        </div>
+        <input type="text" class="pinyin-input" id="py-input" placeholder="Nhập pinyin..." autocomplete="off" onkeydown="if(event.key==='Enter')checkPinyin()">
+        <div style="text-align:center">
+          <button class="btn-check" onclick="checkPinyin()">Kiểm tra</button>
+        </div>
+        <div id="py-result" style="display:none;margin-top:12px"></div>
+        <div class="quiz-score">
+          <span>Đúng: <span class="score-correct" id="py-correct">0</span></span>
+          <span>Sai: <span class="score-wrong" id="py-wrong">0</span></span>
+        </div>
+        <div style="text-align:center;margin-top:8px">
+          <button class="btn-check" id="py-next-btn" onclick="nextPinyin()" style="display:none">Tiếp →</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- PINYIN -->
-  <div class="section" id="sec-pinyin">
-    <div class="quiz-container">
-      <div class="quiz-question">
-        <div class="quiz-prompt">Nhập pinyin cho từ:</div>
-        <div class="quiz-hanzi" id="py-hanzi"></div>
-        <div id="py-vi-hint" style="font-size:0.9em;color:var(--text-light);margin-top:4px"></div>
-      </div>
-      <input type="text" class="pinyin-input" id="py-input" placeholder="Nhập pinyin..." autocomplete="off" onkeydown="if(event.key==='Enter')checkPinyin()">
-      <div style="text-align:center">
-        <button class="btn-check" onclick="checkPinyin()">Kiểm tra</button>
-      </div>
-      <div id="py-result" style="display:none;margin-top:12px"></div>
-      <div class="quiz-score">
-        <span>Đúng: <span class="score-correct" id="py-correct">0</span></span>
-        <span>Sai: <span class="score-wrong" id="py-wrong">0</span></span>
-      </div>
-      <div style="text-align:center;margin-top:8px">
-        <button class="btn-check" id="py-next-btn" onclick="nextPinyin()" style="display:none">Từ tiếp →</button>
-      </div>
-    </div>
+  <!-- ===== BÀI ĐỌC ===== -->
+  <div class="section" id="sec-reading">
+    <div class="reading-list" id="readingList"></div>
   </div>
 
-  <!-- LIST -->
-  <div class="section" id="sec-list">
-    <input type="text" class="search-box" id="searchBox" placeholder="Tìm kiếm (tiếng Trung, pinyin hoặc tiếng Việt)..." oninput="renderList()">
-    <div class="word-list" id="wordList"></div>
-  </div>
-
-  <!-- GRAMMAR -->
+  <!-- ===== NGỮ PHÁP ===== -->
   <div class="section" id="sec-grammar">
     <div class="panel-card">
-      <div class="panel-title">Ngữ pháp HSK 1-4</div>
-      <div class="panel-sub">Tổng hợp 160 điểm ngữ pháp HSK 1-4, kèm ví dụ ngắn dễ nhớ.</div>
-      <div class="grammar-list" id="grammarList"></div>
+      <div class="panel-sub">160 điểm ngữ pháp HSK 1–4, kèm ví dụ.</div>
     </div>
+    <div class="grammar-list" id="grammarList"></div>
   </div>
 
-  <div class="section" id="sec-reading">
-    <div class="panel-card">
-      <div class="panel-title">Hội thoại & Bài đọc HSK1-4</div>
-      <div class="reading-list" id="readingList"></div>
-    </div>
+  </main>
   </div>
+</div>
 
+<div class="vocab-tip" id="vocabTip">
+  <div class="vt-py" id="vtPy"></div>
+  <div class="vt-vi" id="vtVi"></div>
 </div>
 
 <div class="word-detail-overlay" id="detailOverlay" onclick="if(event.target===this)closeDetail()">
@@ -4703,7 +4770,7 @@ const HANDCRAFTED_EXAMPLES={
 let filteredV=[], studyQueue=[], currentIdx=0, isFlipped=false;
 let hskFilter=new Set([1,2,3,4]), statusFilter='all';
 let quizMode='zh2vi', qCorrect=0, qWrong=0, pyCorrect=0, pyWrong=0;
-let currentSection='flashcard';
+let currentSection='vocab';
 let progress=JSON.parse(localStorage.getItem('hsk_progress')||'{}');
 let totalCorrect=parseInt(localStorage.getItem('hsk_total_correct')||'0');
 let totalWrong=parseInt(localStorage.getItem('hsk_total_wrong')||'0');
@@ -4729,7 +4796,6 @@ function applyFilters(){
     let m=getMastery(w);
     if(statusFilter==='new'&&m!==0)return false;
     if(statusFilter==='learning'&&(m<1||m>=3))return false;
-    if(statusFilter==='mastered'&&m<3)return false;
     return true;
   }).sort(sortByLesson);
   studyQueue=[...filteredV];
@@ -4740,10 +4806,8 @@ function applyFilters(){
 
 function updateStats(){
   let total=V.filter(w=>hskFilter.has(w[3])).length;
-  let learned=V.filter(w=>hskFilter.has(w[3])&&getMastery(w)>=3).length;
   let learning=V.filter(w=>hskFilter.has(w[3])&&getMastery(w)>=1&&getMastery(w)<3).length;
   document.getElementById('totalWords').textContent=total;
-  document.getElementById('learnedWords').textContent=learned;
   document.getElementById('learningWords').textContent=learning;
   let t=totalCorrect+totalWrong;
   document.getElementById('accuracy').textContent=t>0?Math.round(totalCorrect/t*100)+'%':'0%';
@@ -4766,30 +4830,58 @@ function toggleExampleDetails(prefix){
   if(el)el.classList.toggle('show');
 }
 
-function switchSection(s){
+function switchSection(s,el){
   currentSection=s;
-  document.querySelectorAll('.section').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));
   document.getElementById('sec-'+s).classList.add('active');
-  document.querySelectorAll('.nav-tab').forEach(el=>el.classList.remove('active'));
-  event.target.classList.add('active');
-  if(s==='flashcard')showCard();
-  if(s==='quiz')nextQuiz();
-  if(s==='pinyin')nextPinyin();
-  if(s==='list')renderList();
+  document.querySelectorAll('.nav-tab').forEach(e=>e.classList.remove('active'));
+  if(el)el.classList.add('active');
+  if(s==='vocab'){showCard();renderList();}
+  if(s==='test'){
+    const activeTest=document.querySelector('#test-nav button.active');
+    if(activeTest&&activeTest.dataset.test==='pinyin')nextPinyin();
+    else nextQuiz();
+  }
   if(s==='grammar')renderGrammar();
   if(s==='reading')renderReadings();
+}
+function switchSub(section,sub,el){
+  const parent=document.getElementById('sec-'+section);
+  parent.querySelectorAll('.sub-section').forEach(e=>e.classList.remove('active'));
+  document.getElementById('sub-'+sub).classList.add('active');
+  const nav=document.getElementById(section+'-nav');
+  if(nav){
+    nav.querySelectorAll('button').forEach(e=>e.classList.remove('active'));
+    el.classList.add('active');
+  }
+  if(sub==='flashcard')showCard();
+  if(sub==='list')renderList();
+}
+function setTestMode(mode,el){
+  document.querySelectorAll('#test-nav button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  if(mode==='pinyin'){
+    document.getElementById('sub-quiz').classList.remove('active');
+    document.getElementById('sub-pinyin').classList.add('active');
+    nextPinyin();
+  }else{
+    quizMode=mode;
+    document.getElementById('sub-pinyin').classList.remove('active');
+    document.getElementById('sub-quiz').classList.add('active');
+    nextQuiz();
+  }
 }
 
 function toggleHSK(n,el){
   el.classList.toggle('active');
   if(hskFilter.has(n))hskFilter.delete(n);else hskFilter.add(n);
   applyFilters();
-  if(currentSection==='flashcard')showCard();
-  if(currentSection==='quiz')nextQuiz();
-  if(currentSection==='pinyin')nextPinyin();
-  if(currentSection==='list')renderList();
-  if(currentSection==='grammar')renderGrammar();
-  if(currentSection==='reading')renderReadings();
+  showCard();renderList();renderGrammar();renderReadings();
+  if(currentSection==='test'){
+    const activeTest=document.querySelector('#test-nav button.active');
+    if(activeTest&&activeTest.dataset.test==='pinyin')nextPinyin();
+    else nextQuiz();
+  }
 }
 
 function setStatusFilter(s,el){
@@ -4797,30 +4889,28 @@ function setStatusFilter(s,el){
   document.querySelectorAll('[data-status]').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   applyFilters();
-  if(currentSection==='flashcard')showCard();
-  if(currentSection==='quiz')nextQuiz();
-  if(currentSection==='pinyin')nextPinyin();
-  if(currentSection==='list')renderList();
+  showCard();
 }
 
+function shuffleArray(arr){
+  for(let i=arr.length-1;i>0;i--){
+    let j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
 function shuffleWords(){
   studyQueue=[...filteredV];
-  for(let i=studyQueue.length-1;i>0;i--){
-    let j=Math.floor(Math.random()*(i+1));
-    [studyQueue[i],studyQueue[j]]=[studyQueue[j],studyQueue[i]];
-  }
+  shuffleArray(studyQueue);
   currentIdx=0;isFlipped=false;
-  if(currentSection==='flashcard')showCard();
-  if(currentSection==='quiz')nextQuiz();
-  if(currentSection==='pinyin')nextPinyin();
+  showCard();
 }
 
 function resetProgress(){
   if(confirm('Bạn có chắc muốn xóa toàn bộ tiến trình?')){
     progress={};totalCorrect=0;totalWrong=0;
     saveProgress();applyFilters();
-    if(currentSection==='flashcard')showCard();
-    if(currentSection==='list')renderList();
+    showCard();renderList();
   }
 }
 
@@ -4876,7 +4966,7 @@ function markWord(know){
 // QUIZ
 function nextQuiz(){
   if(studyQueue.length<4){
-    document.querySelector('.quiz-container').innerHTML='<div class="empty-state"><div class="emoji">📝</div><p>Cần ít nhất 4 từ. Hãy thay đổi bộ lọc.</p></div>';
+    document.getElementById('quiz-container').innerHTML='<div class="empty-state"><div class="emoji">📝</div><p>Cần ít nhất 4 từ. Hãy thay đổi bộ lọc HSK.</p></div>';
     return;
   }
   let idx=Math.floor(Math.random()*studyQueue.length);
@@ -4962,13 +5052,6 @@ function checkQuiz(selected,correct,optsEl){
   document.getElementById('q-wrong').textContent=qWrong;
 }
 
-function setQuizMode(m,el){
-  quizMode=m;
-  document.querySelectorAll('.mode-toggle button').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  nextQuiz();
-}
-
 // PINYIN
 function nextPinyin(){
   if(studyQueue.length===0)return;
@@ -5028,7 +5111,8 @@ function checkPinyin(){
 function renderList(){
   let search=(document.getElementById('searchBox')||{}).value||'';
   search=search.toLowerCase();
-  let list=filteredV.filter(w=>{
+  let allByHsk=V.filter(w=>hskFilter.has(w[3]));
+  let list=allByHsk.filter(w=>{
     if(!search)return true;
     return w[0].includes(search)||w[1].toLowerCase().includes(search)||w[2].toLowerCase().includes(search);
   }).sort(sortByLesson);
@@ -5040,13 +5124,11 @@ function renderList(){
   let html='';
   list.forEach((w,i)=>{
     let m=getMastery(w);
-    let hskClass='hsk'+w[3];
     html+='<div class="word-item" onclick="showDetail('+V.indexOf(w)+')">';
     html+='<span class="wi-hanzi">'+w[0]+'</span>';
     html+='<span class="wi-pinyin">'+w[1]+'</span>';
     html+='<span class="wi-vi">'+w[2]+'</span>';
-    let colors={1:'#e67e22',2:'#27ae60',3:'#2980b9',4:'#8e44ad'};
-    html+='<span class="wi-badge" style="background:'+colors[w[3]]+'">H'+w[3]+'-B'+w[4]+'</span>';
+    html+='<span class="wi-badge">HSK '+w[3]+' | Bài '+w[4]+'</span>';
     html+='<span class="mastery-dot mastery-'+m+'"></span>';
     html+='</div>';
   });
@@ -5076,10 +5158,13 @@ function renderGrammar(){
   }
   el.innerHTML=sorted.map((g,i)=>`
     <div class="grammar-item">
-      <div class="grammar-head">
-        <div class="grammar-pattern">${g.pattern}</div>
-        <div class="grammar-meta">${g.level} | ${g.lesson}</div>
+      <div class="content-head">
+        <span class="content-meta">${formatReadingLevel(g.level)} | ${g.lesson}</span>
+        <div class="content-title-wrap">
+          <div class="content-title">${g.pattern}</div>
+        </div>
       </div>
+      <div class="grammar-body">
       <div class="grammar-note">${g.note}</div>
       <div class="grammar-ex">
         <div class="example-title">Ví dụ tiếng Trung</div>
@@ -5092,22 +5177,58 @@ function renderGrammar(){
           <div class="ex-vi">${g.exVi}</div>
         </div>
       </div>
+      </div>
     </div>
   `).join('');
 }
 
-function highlightVocab(text,vocabList){
+const vocabLookup={};
+V.forEach(w=>{if(!vocabLookup[w[0]])vocabLookup[w[0]]={py:w[1],vi:w[2]};});
+
+function highlightVocab(text,vocabList,seen){
   if(!vocabList||!vocabList.length)return text;
   let result=text;
   const sorted=[...vocabList].sort((a,b)=>b.length-a.length);
   sorted.forEach(w=>{
+    if(seen.has(w))return;
     const escaped=w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-    result=result.replace(new RegExp(escaped,'g'),`<span class="vocab-hl">${w}</span>`);
+    const re=new RegExp(escaped);
+    if(re.test(result)){
+      const info=vocabLookup[w];
+      const py=info?info.py:'';
+      const vi=info?info.vi:'';
+      result=result.replace(re,`<span class="vocab-hl" data-py="${py}" data-vi="${vi}">${w}</span>`);
+      seen.add(w);
+    }
   });
   return result;
 }
-function formatLessonTitle(title){
-  return title.replace(/^((第[一二三四五六七八九十百\d]+课))\s+/,'$1 - ');
+function cnLessonNum(ch){
+  const cn={'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9};
+  if(/^\d+$/.test(ch))return ch;
+  if(ch==='十')return'10';
+  if(ch.startsWith('十')&&ch.length===2)return String(10+(cn[ch[1]]||0));
+  if(ch.endsWith('十')&&ch.length===2)return String((cn[ch[0]]||0)*10);
+  if(ch.includes('十')){
+    const p=ch.split('十');
+    const tens=p[0]?cn[p[0]]||0:1;
+    const ones=p[1]?cn[p[1]]||0:0;
+    return String(tens*10+ones);
+  }
+  return String(cn[ch]||ch);
+}
+function parseLessonTitle(title){
+  const m=title.match(/^(第([一二三四五六七八九十百\d]+)课)\s+(.+)$/);
+  if(m)return{chapter:m[1],num:cnLessonNum(m[2]),name:m[3]};
+  return{chapter:'',num:'',name:title};
+}
+function formatReadingLevel(level){
+  const m=(level||'').match(/HSK\s*(\d)(.*)/i);
+  if(m)return`HSK ${m[1]}${m[2]||''}`;
+  return level||'';
+}
+function formatReadingTag(level,lessonNum){
+  return`${formatReadingLevel(level)} | Bài ${lessonNum}`;
 }
 function parseTextSub(sub){
   const m=sub.match(/^(\d+)\s+(.+)$/);
@@ -5119,43 +5240,94 @@ function readingMatchesHSKFilter(level){
   const m=(level||'').match(/HSK(\d)/);
   return m?hskFilter.has(parseInt(m[1],10)):false;
 }
+function detectSpeakers(lines){
+  const speakers=[];
+  lines.forEach(l=>{
+    const ci=l.indexOf('：');
+    if(ci>0&&ci<10){
+      const s=l.substring(0,ci);
+      if(!speakers.includes(s))speakers.push(s);
+    }
+  });
+  return speakers;
+}
+function isPassageText(lines){
+  return detectSpeakers(lines).length<2;
+}
 function renderReadings(){
   const filtered=R.filter(r=>readingMatchesHSKFilter(r.level));
   const el=document.getElementById('readingList');
   if(filtered.length===0){el.innerHTML='<div class="empty-state"><div class="emoji">📖</div><p>Chọn ít nhất một cấp HSK để xem.</p></div>';return;}
   el.innerHTML=filtered.map(r=>{
+    const seen=new Set();
+    const lesson=parseLessonTitle(r.title);
+    const levelTag=formatReadingTag(r.level,lesson.num);
     const textsHtml=r.texts.map(t=>{
       const info=parseTextSub(t.sub);
+      const isPassage=isPassageText(t.lines);
+      const speakers=isPassage?[]:detectSpeakers(t.lines);
       const linesHtml=t.lines.map(line=>{
-        const hl=highlightVocab(line,t.vocab);
+        const hl=highlightVocab(line,t.vocab,seen);
         const colonIdx=hl.indexOf('：');
-        if(!info.isPassage&&colonIdx>0&&colonIdx<10){
+        if(!isPassage&&colonIdx>0&&colonIdx<10){
+          const rawSpeaker=line.substring(0,line.indexOf('：'));
+          const spIdx=speakers.indexOf(rawSpeaker);
+          const cls=spIdx%2===0?'speaker-a':'speaker-b';
           const speaker=hl.substring(0,colonIdx);
           const rest=hl.substring(colonIdx);
-          return `<div class="dialogue-line"><span class="speaker">${speaker}</span>${rest}</div>`;
+          return `<div class="dialogue-line ${cls}"><span class="speaker">${speaker}</span>${rest}</div>`;
         }
-        return `<div class="${info.isPassage?'passage-line':'dialogue-line'}">${hl}</div>`;
+        return `<div class="${isPassage?'passage-line':'dialogue-line'}">${hl}</div>`;
       }).join('');
-      const headName=info.name?`<span class="reading-text-name">${info.name}</span>`:'';
-      const blockClass=info.isPassage?'passage':'dialogue';
+      const textLabel=info.name||'课文';
+      const blockClass=isPassage?'passage':'dialogue';
       return `
       <div class="reading-text-block ${blockClass}">
-        <div class="reading-text-head">
-          <span class="reading-text-num">课文 ${info.num}</span>
-          ${headName}
+        <div class="content-head">
+          <span class="content-meta">${levelTag}</span>
+          <div class="content-title-wrap">
+            <span class="content-title">${textLabel}</span>
+          </div>
         </div>
         <div class="reading-text-body">${linesHtml}</div>
       </div>`;
     }).join('');
     return `
     <div class="reading-lesson">
-      <div class="reading-lesson-head">
-        <div class="reading-lesson-title">${formatLessonTitle(r.title)}</div>
-        <span class="lesson-chapter">${r.level}</span>
-      </div>
       <div class="reading-lesson-body">${textsHtml}</div>
     </div>`;
   }).join('');
+  initVocabTooltips();
+}
+function getVocabTipTheme(el){
+  if(el.closest('.speaker-a'))return'tip-a';
+  if(el.closest('.speaker-b'))return'tip-b';
+  if(el.closest('.reading-text-block.passage')||el.closest('.passage-line'))return'tip-passage';
+  return'tip-default';
+}
+function initVocabTooltips(){
+  const tip=document.getElementById('vocabTip');
+  document.querySelectorAll('.vocab-hl').forEach(el=>{
+    el.addEventListener('mouseenter',e=>{
+      const py=el.dataset.py;
+      const vi=el.dataset.vi;
+      if(!py&&!vi)return;
+      document.getElementById('vtPy').textContent=py;
+      document.getElementById('vtVi').textContent=vi;
+      tip.className='vocab-tip '+getVocabTipTheme(el);
+      tip.style.display='block';
+      const rect=el.getBoundingClientRect();
+      let left=rect.left;
+      let top=rect.bottom+4;
+      if(left+220>window.innerWidth)left=window.innerWidth-224;
+      if(top+60>window.innerHeight)top=rect.top-50;
+      tip.style.left=left+'px';
+      tip.style.top=top+'px';
+    });
+    el.addEventListener('mouseleave',()=>{
+      tip.style.display='none';
+    });
+  });
 }
 
 function showDetail(i){
@@ -5176,7 +5348,7 @@ function closeDetail(){
 }
 
 document.addEventListener('keydown',e=>{
-  if(currentSection==='flashcard'){
+  if(currentSection==='vocab'){
     if(e.key===' '||e.key==='Enter'){e.preventDefault();flipCard()}
     if(e.key==='ArrowRight')nextCard();
     if(e.key==='ArrowLeft')prevCard();
