@@ -60,12 +60,13 @@ body{font-family:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;backgroun
 .search-box:focus{box-shadow:0 0 0 3px rgba(91,155,213,0.15)}
 
 /* ── Flashcard ── */
-.card-container{perspective:1000px;margin:6px 0}
-.flashcard{position:relative;width:100%;min-height:min(52vh,440px);cursor:pointer;transform-style:preserve-3d;transition:transform 0.5s}
+.card-container{perspective:1000px;margin:6px 0 16px}
+.flashcard{position:relative;width:100%;height:min(60vh,520px);cursor:pointer;transform-style:preserve-3d;transition:transform 0.5s}
 .flashcard.flipped{transform:rotateY(180deg)}
-.card-face{position:absolute;width:100%;min-height:min(52vh,440px);backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 32px;background:var(--card);box-shadow:var(--shadow)}
-.card-front{background:var(--card)}
-.card-back{background:var(--card);transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;width:100%;height:100%;backface-visibility:hidden;border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;padding:28px 32px;background:var(--card);box-shadow:var(--shadow);overflow-y:auto}
+.card-front{justify-content:center;background:var(--card)}
+.card-back{justify-content:flex-start;padding-top:44px;background:var(--card);transform:rotateY(180deg)}
+.card-back .card-example{flex-shrink:0}
 .card-hanzi{font-size:5em;font-weight:300;color:var(--text);margin-bottom:8px;line-height:1.2;font-family:'LXGW WenKai TC',sans-serif}
 .card-pinyin{font-size:1.05em;color:var(--pri);margin-bottom:3px;font-weight:500}
 .card-vi{font-size:.92em;color:var(--text-sec);margin-bottom:14px;text-align:center}
@@ -83,7 +84,7 @@ body{font-family:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;backgroun
 .card-badge{position:absolute;top:14px;left:14px;padding:4px 12px;border-radius:999px;font-size:.72em;font-weight:600;background:var(--pri);color:#fff}
 .card-badge.hsk1,.card-badge.hsk2,.card-badge.hsk3,.card-badge.hsk4{background:var(--pri)}
 .card-lesson{position:absolute;top:14px;right:14px;font-size:.72em;color:var(--text-sec)}
-.card-nav{display:flex;gap:10px;justify-content:center;margin:10px 0;align-items:center}
+.card-nav{display:flex;gap:10px;justify-content:center;margin:24px 0 12px;align-items:center}
 .card-nav button{padding:12px 26px;border:none;border-radius:var(--radius);cursor:pointer;font-size:.95em;font-weight:600;transition:all .15s}
 .btn-prev,.btn-next{background:var(--card);color:var(--text);box-shadow:var(--shadow)}
 .btn-prev:hover,.btn-next:hover{background:var(--pri-bg);color:var(--pri)}
@@ -215,7 +216,8 @@ body{font-family:'Inter',-apple-system,'Segoe UI',system-ui,sans-serif;backgroun
   .hsk-filters{gap:3px}
   .filter-btn{padding:5px 0;font-size:.75em;min-width:0}
   .card-hanzi,.quiz-hanzi{font-size:3.5em}
-  .flashcard,.card-face{min-height:320px}
+  .flashcard,.card-face{height:min(55vh,400px)}
+  .card-nav{margin-top:16px}
   .quiz-question{min-height:260px}
   .quiz-options{grid-template-columns:1fr}
   .card-nav{flex-wrap:wrap}
